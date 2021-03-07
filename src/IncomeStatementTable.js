@@ -2,16 +2,10 @@ import React, { useContext, useEffect } from "react";
 
 import { getIncomeStatement } from "./apiMock";
 import { IncomeStatementCategory } from "./IncomeStatementCategory";
-import numberToDollar from "./utils/numberToDollar"
 import IncomeContext from "./store/context"
 
 export default function IncomeStatementTable() {
-  const {
-    dispatchSetAll,
-    months,
-    categories,
-    subcategories,
-  } = useContext(IncomeContext)
+  const { dispatchSetAll, months, categories } = useContext(IncomeContext)
 
   useEffect(() => {
     if (dispatchSetAll) {
@@ -23,7 +17,7 @@ export default function IncomeStatementTable() {
 
   return (
     <table>
-    
+
       <thead>
         <tr>
           <th>Monthly</th>
@@ -32,26 +26,13 @@ export default function IncomeStatementTable() {
           ))}
         </tr>
       </thead>
-      
-      <tbody>
-        {categories.map((category, i) => {
-          return (<>
 
-            <tr>
-              <td colspan={4}>{category.name}</td>
-            </tr>
-            <IncomeStatementCategory
-              category={category}
-              subcats={subcategories}
-            />
-            <tr>
-              <td>Total: </td>
-              <td colspan={3}>{numberToDollar(category.total)}</td>
-            </tr>
-          </>);
-        })}
+      <tbody>
+        {categories.map((category, i) => (
+          <IncomeStatementCategory key={i} category={category} />
+        ))}
       </tbody>
-      
+
     </table>
   );
 }

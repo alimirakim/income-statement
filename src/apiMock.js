@@ -87,7 +87,7 @@ export const getIncomeStatement = () => {
       {
         name: "Customer Support Expense", // 3
         category_id: 1,
-        values: [
+        monthly_values: [
           {
             month_id: 0,
             value: 20304
