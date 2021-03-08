@@ -13,10 +13,9 @@ export function IncomeContextProvider(props) {
   const dispatchToggleToMonthly = () => dispatch(toggleToMonthly())
   const dispatchToggleToQuarterly = () => dispatch(toggleToQuarterly())
   const dispatchOption = (option) => dispatch(setOption(option))
-  
 
   const initState = {
-    isMonthly: true,
+    isMonthly: false,
     months: [],
     categories: [],
     subcategories: [],

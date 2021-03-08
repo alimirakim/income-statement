@@ -9,7 +9,6 @@ import numberToDollar from "./utils/numberToDollar"
 export const IncomeStatementCategory = ({ category }) => {
   const { subcategories, option } = useContext(IncomeContext)
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [total, setTotal] = useState(category.total)
 
   const collapse = () => setIsCollapsed(!isCollapsed)
   return (<>
@@ -34,7 +33,7 @@ export const IncomeStatementCategory = ({ category }) => {
 
       <TableRow>
         <TableCell>Total: </TableCell>
-        <TableCell align="right">{numberToDollar(total)}</TableCell>
+        <TableCell align="right">{numberToDollar(category.total)}</TableCell>
       </TableRow>
     </>}
   </>);

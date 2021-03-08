@@ -8,22 +8,43 @@ export const SET_OPTION = "SET_OPTION"
 
 // ACTION CREATORS
 export const setAll = (data) => ({ type: GET_ALL, data })
+export const setOption = (option) => ({ type: SET_OPTION, option })
 export const toggleMonthly = () => ({ type: TOGGLE_MONTHLY })
 export const toggleToMonthly = () => ({ type: IS_MONTHLY })
 export const toggleToQuarterly = () => ({ type: IS_QUARTERLY })
-export const setOption = (option) => ({ type: SET_OPTION, option })
 
 // REDUCER
 export default function incomeReducer(state, action) {
+  const newState = { ...state }
   switch (action.type) {
     case GET_ALL:
       return { ...state, ...action.data };
     case TOGGLE_MONTHLY:
       return { ...state, isMonthly: !state.isMonthly }
     case IS_MONTHLY:
-      return { ...state, isMonthly: true }
+      newState.categories.forEach(cat => {
+        if (cat.subcategory_ids.length) {
+          let total = 0;
+          cat.subcategory_ids.map(scid => {
+            const subcat = newState.subcategories[scid]
+            total += subcat.monthly_values[subcat.monthly_values.length - 1].value
+          })
+          cat.total = total;
+        }
+      })
+      return { ...newState, isMonthly: true }
     case IS_QUARTERLY:
-      return { ...state, isMonthly: false }
+      newState.categories.forEach(cat => {
+        if (cat.subcategory_ids.length) {
+          let total = 0;
+          cat.subcategory_ids.map(scid => {
+            const subcat = newState.subcategories[scid]
+            total += subcat.monthly_values.reduce((val, next) => val += next.value, 0)
+          })
+          cat.total = total;
+        }
+      })
+      return { ...newState, isMonthly: false }
     case SET_OPTION:
       return { ...state, option: action.option }
     default:

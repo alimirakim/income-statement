@@ -2,7 +2,6 @@ import React from "react";
 import { TableCell, TableRow } from "@material-ui/core"
 import makeTimeValue from "./utils/makeTimeValue"
 
-import "./IncomeStatementStyles.css";
 import numberToDollar from "./utils/numberToDollar"
 
 export const IncomeStatementSubCategory = ({ subcategory }) => {
