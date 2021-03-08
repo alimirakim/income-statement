@@ -1,4 +1,9 @@
+
+// MIRA Normalized data structure. Ideally, I'd normalize them into objects 
+// with keys matching their database PKs rather than arrays and array indexes,
+// but I simplified for this exercise.
 export const getIncomeStatement = () => {
+  
   const data = {
     months: [
       "January, 2020", // 0

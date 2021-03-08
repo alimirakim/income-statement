@@ -1,18 +1,15 @@
 import React, { useState, useContext } from "react";
-import {
-  TableCell,
-  TableRow,
-  Button
-} from "@material-ui/core"
+import { TableCell, TableRow, Button } from "@material-ui/core"
 
-import "./IncomeStatementStyles.css";
-import { IncomeStatementSubCategory } from "./IncomeStatementSubCategory"
 import IncomeContext from "./store/context"
+import { IncomeStatementSubCategory } from "./IncomeStatementSubCategory"
 import numberToDollar from "./utils/numberToDollar"
+
 
 export const IncomeStatementCategory = ({ category }) => {
   const { subcategories, option } = useContext(IncomeContext)
   const [isCollapsed, setIsCollapsed] = useState(false)
+  const [total, setTotal] = useState(category.total)
 
   const collapse = () => setIsCollapsed(!isCollapsed)
   return (<>
@@ -37,7 +34,7 @@ export const IncomeStatementCategory = ({ category }) => {
 
       <TableRow>
         <TableCell>Total: </TableCell>
-        <TableCell align="right">{numberToDollar(category.total)}</TableCell>
+        <TableCell align="right">{numberToDollar(total)}</TableCell>
       </TableRow>
     </>}
   </>);

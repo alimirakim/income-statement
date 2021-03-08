@@ -11,11 +11,14 @@ export default function App() {
   return (
     <div className="App">
       <h1>Income Statement</h1>
+      
       <IncomeContextProvider>
+      
         <div className="options">
           <SearchField />
           <ToggleViewButton />
         </div>
+        
         <hr />
         <IncomeStatementTable />
 
