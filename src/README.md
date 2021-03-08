@@ -1,6 +1,5 @@
 # Vara Take Home Project
-# START TIME 12:00
-# END TIME 
+# CURRENT TIME: 7 HOURS
 
 ## Setup
 

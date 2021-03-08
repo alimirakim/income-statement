@@ -1,17 +1,17 @@
 import React from "react";
+import { TableCell, TableRow } from "@material-ui/core"
+import makeTimeValue from "./utils/makeTimeValue"
 
 import "./IncomeStatementStyles.css";
 import numberToDollar from "./utils/numberToDollar"
 
 export const IncomeStatementSubCategory = ({ subcategory }) => {
-  // TODO implement this
-
   return (
-    <tr className="IncomeContainer">
-      <td>{subcategory.name}</td>
-      {subcategory.monthly_values.map((mv, i) => (
-        <td key={i}>{numberToDollar(mv.value)}</td>
-      ))}
-    </tr>
+    <TableRow className="IncomeContainer">
+      <TableCell component="th" scope="row">{subcategory.name}</TableCell>
+      <TableCell align="right">
+        {numberToDollar(makeTimeValue(subcategory))}
+      </TableCell>
+    </TableRow>
   );
 };
